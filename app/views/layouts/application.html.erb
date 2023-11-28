@@ -6,11 +6,38 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= render partial: "shared/cdn_assets" %>
+
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: "shared/navbar" %>
+
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-md-6 offset-md-3">
+          <% if notice.present? %>
+            <%= render partial: "shared/flash", locals: { message: notice, css_class: "success" } %>
+          <% end %>
+
+          <% if alert.present? %>
+            <%= render partial: "shared/flash", locals: { message: alert, css_class: "danger" } %>
+          <% end %>
+        </div>
+      </div>
+
+      <!--<div><a href="/">Home</a></div>-->
+      <div><a href="/users/sign_in">Login</a></div>
+      <div><a href="/users/sign_up">Sign Up</a></div>
+      <div><a href="/users/sign_out">Sign Out</a></div>
+      <div><a href="/users/edit">Edit User</a></div>
+      <div><a href="/tasks">New Task</a></div>
+
+      <%= yield %>
+    </div>
+
   </body>
 </html>

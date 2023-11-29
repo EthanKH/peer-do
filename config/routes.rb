@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :taskies
   root "home#index"
   
   devise_for :users

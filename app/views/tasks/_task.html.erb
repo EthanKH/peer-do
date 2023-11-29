@@ -1,12 +1,17 @@
 <div id="<%= dom_id task %>">
   <p>
-    <strong>Name:</strong>
-    <%= task.name %>
+    <strong>Description:</strong>
+    <%= task.description %>
   </p>
 
   <p>
-    <strong>Description:</strong>
-    <%= task.description %>
+    <strong>Due date:</strong>
+    <%= task.due_date %>
+  </p>
+
+  <p>
+    <strong>Due time:</strong>
+    <%= task.due_time %>
   </p>
 
   <p>
@@ -20,8 +25,8 @@
   </p>
 
   <p>
-    <strong>Viewer permissions:</strong>
-    <%= task.viewer_permissions %>
+    <strong>Owner:</strong>
+    <%= task.owner_id %>
   </p>
 
 </div>

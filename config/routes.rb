@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :tasks
-  put '/tasks/:id/increment_counter', to: 'tasks#increment_counter', as: 'increment_counter'
 
 
 

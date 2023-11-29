@@ -4,7 +4,6 @@
 #
 #  id                 :integer          not null, primary key
 #  completion         :integer
-#  counter            :integer
 #  description        :string
 #  name               :string
 #  ping_frequency     :integer

@@ -6,14 +6,6 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
-  def increment_counter
-    @task = Task.find(params[:id])
-    @task.increment!(:counter)
-    respond_to do |format|
-      format.js # Assuming you want to use AJAX to increment the counter
-    end
-  end
-
   # GET /tasks/1 or /tasks/1.json
   def show
   end

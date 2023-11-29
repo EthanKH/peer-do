@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pings
   resources :friend_requests
   resources :taskies
   root "home#index"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_29_223745) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_30_182939) do
   create_table "friend_requests", force: :cascade do |t|
     t.integer "recipient_id", null: false
     t.integer "sender_id", null: false
@@ -19,6 +19,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_29_223745) do
     t.datetime "updated_at", null: false
     t.index ["recipient_id"], name: "index_friend_requests_on_recipient_id"
     t.index ["sender_id"], name: "index_friend_requests_on_sender_id"
+  end
+
+  create_table "pings", force: :cascade do |t|
+    t.integer "poker_id", null: false
+    t.integer "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poker_id"], name: "index_pings_on_poker_id"
+    t.index ["task_id"], name: "index_pings_on_task_id"
   end
 
   create_table "taskies", force: :cascade do |t|
@@ -42,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_29_223745) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "owner_id", null: false
+    t.integer "pings_count", default: 0
     t.index ["owner_id"], name: "index_tasks_on_owner_id"
   end
 
@@ -55,12 +65,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_29_223745) do
     t.boolean "private"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "pings_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "friend_requests", "users", column: "recipient_id"
   add_foreign_key "friend_requests", "users", column: "sender_id"
+  add_foreign_key "pings", "tasks"
+  add_foreign_key "pings", "users", column: "poker_id"
   add_foreign_key "taskies", "owners"
   add_foreign_key "tasks", "users", column: "owner_id"
 end

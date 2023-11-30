@@ -5,6 +5,7 @@
 #  id                     :integer          not null, primary key
 #  email                  :text             default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  pings_count            :integer          default(0)
 #  private                :boolean
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
@@ -24,6 +25,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :own_tasks, class_name: "Task", foreign_key: "owner_id"
+  has_many :tasks, class_name: "Task", foreign_key: "owner_id"
 
 end

@@ -28,7 +28,7 @@ class User < ApplicationRecord
 
   # has_many :tasks, class_name: "Task", foreign_key: "owner_id"
   has_many :tasks, foreign_key: :owner_id, class_name: "Task"
-  has many :pings, foreign_key: :poker_id
+  has_many :pings, foreign_key: :poker_id
 
   has_many :sent_friend_requests, foreign_key: :sender_id, class_name: "FriendRequest"
   has_many :received_friend_requests, foreign_key: :receiver_id, class_name: "FriendRequest"

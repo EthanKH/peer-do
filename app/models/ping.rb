@@ -19,6 +19,8 @@
 #  task_id   (task_id => tasks.id)
 #
 class Ping < ApplicationRecord
+  has_many :peers, through: :pings, source: :poker
+
   belongs_to :poker, class_name: "User", counter_cache: true
   belongs_to :task, counter_cache: true
 end

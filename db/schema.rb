@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_30_220012) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_30_225230) do
   create_table "friend_requests", force: :cascade do |t|
-    t.integer "recipient_id", null: false
+    t.integer "receiver_id", null: false
     t.integer "sender_id", null: false
     t.string "status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["recipient_id"], name: "index_friend_requests_on_recipient_id"
+    t.index ["receiver_id"], name: "index_friend_requests_on_receiver_id"
     t.index ["sender_id"], name: "index_friend_requests_on_sender_id"
   end
 
@@ -71,7 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_30_220012) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "friend_requests", "users", column: "recipient_id"
+  add_foreign_key "friend_requests", "users", column: "receiver_id"
   add_foreign_key "friend_requests", "users", column: "sender_id"
   add_foreign_key "pings", "tasks"
   add_foreign_key "pings", "users", column: "poker_id"

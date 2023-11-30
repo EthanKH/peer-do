@@ -6,7 +6,7 @@
 #  email                  :text             default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  pings_count            :integer          default(0)
-#  private                :boolean
+#  private                :boolean          default(TRUE)
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -41,6 +41,8 @@ class User < ApplicationRecord
   has_many :receivers, through: :accepted_sent_friend_requests, source: :receiver
   has_many :senders, through: :accepted_received_friend_requests, source: :sender
 
-  has_many :task_page, through: :receivers, source: :tasks
-  
+  has_many :tasks_page, through: :receivers, source: :tasks
+
+
+  validates :username, presence: true, uniqueness: true
 end

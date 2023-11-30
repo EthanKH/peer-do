@@ -31,5 +31,16 @@ class User < ApplicationRecord
   has_many :pings, foreign_key: :poker_id
 
   has_many :sent_friend_requests, foreign_key: :sender_id, class_name: "FriendRequest"
+  has_many :accepted_sent_friend_requests, -> { where(accepted: "accepted") }, foreign_key: :sender_id, class_name: "FriendRequest"
+
   has_many :received_friend_requests, foreign_key: :receiver_id, class_name: "FriendRequest"
+  has_many :accepted_received_friend_requests, -> { where(accepted: "accepted") }, foreign_key: :receiver_id, class_name: "FriendRequest"
+
+  has_many :peer_tasks, through: :pings, source: :task
+
+  has_many :receivers, through: :accepted_sent_friend_requests, source: :receiver
+  has_many :senders, through: :accepted_received_friend_requests, source: :sender
+
+  has_many :task_page, through: :receivers, source: :tasks
+  
 end

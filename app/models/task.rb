@@ -24,4 +24,6 @@
 class Task < ApplicationRecord
   belongs_to :owner, class_name: "User", counter_cache: true
   has_many :pings
+
+  has_many :peers, through: :pings
 end

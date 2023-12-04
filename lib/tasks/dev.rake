@@ -43,7 +43,7 @@ task({ :sample_data => :environment }) do
     p u.errors.full_messages
   end
 
-  p "There are now #{User.count} users in the database."
+  # p "There are now #{User.count} users in the database."
 
   users = User.all
 
@@ -68,7 +68,12 @@ task({ :sample_data => :environment }) do
   users.each do |user|
     rand(15).times do
       task = user.own_tasks.create(
-        description: Faker::Hobby.activity,
+        description: [
+          "Practice #{Faker::Hobby.activity}",
+          "Catch a #{Faker::Games::Pokemon.name}",
+          "Find #{Faker::Games::Zelda.item}",
+          "Eat #{Faker::Food.dish}",
+        ].sample,
         due_date: Faker::Date.forward(days: 30),
         due_time: Faker::Time.forward(format: :short),
         ping_frequency: rand(1..10),

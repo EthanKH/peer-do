@@ -1,5 +1,11 @@
 desc "Fill the database tables with some sample data"
 task({ :sample_data => :environment }) do
+
+  # https://github.com/faker-ruby/faker
+  # Faker Time https://github.com/faker-ruby/faker/blob/main/doc/default/time.md
+  # Faker Date https://github.com/faker-ruby/faker/blob/main/doc/default/date.md
+  # Faker Zelda Names https://github.com/faker-ruby/faker/blob/main/doc/games/zelda.md
+
   p "Creating sample data..."
 
   if Rails.env.development?
@@ -47,8 +53,8 @@ task({ :sample_data => :environment }) do
     rand(15).times do
       task = user.tasks.create(
         description: Faker::Hobby.activity,
-        due_date: Faker::Date.forward(days: 30),
-        due_time: Faker::Time.forward,
+        # due_date: Faker::Date.forward(days: 30),
+        # due_time: Faker::Time.forward,
         ping_frequency: rand(1..10),
         completion: rand(0..100)
       )

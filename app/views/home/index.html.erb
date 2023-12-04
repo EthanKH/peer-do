@@ -1,10 +1,12 @@
-<h1>Welcome to Taskie!</h1>
-
-<!-- <p>Hi <%#= User.username %></p> -->
-<div><a href="/tasks">Create New Task?</a></div>
-
 <% if user_signed_in? %>
+  <h1>Welcome to Taskie <%= current_user.username %>!</h1>
   <div><a href="/tasks/new">Create New Task?</a></div>
 <% else %>
+  <h1>Welcome to Taskie!</h1>
   <div>Taskie is a To-Do list that combines the social aspect of accountability (or peer pressure) from your friends to help keep you on track of your goals! Your tasks will be publicly available for only the friends you've added to see. Ping your friends on tasks that they have yet to complete, just be nice about it!</div>
+  <ul>
+    <li>Create tasks for yourself!</li>
+    <li>Ping your friends, keep them accountable!</li>
+    <li>Get more done!</li>
+  </ul>
 <% end %>

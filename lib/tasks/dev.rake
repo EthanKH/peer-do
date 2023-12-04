@@ -51,7 +51,7 @@ task({ :sample_data => :environment }) do
 
   users.each do |user|
     rand(15).times do
-      task = user.tasks.create(
+      task = user.own_tasks.create(
         description: Faker::Hobby.activity,
         # due_date: Faker::Date.forward(days: 30),
         # due_time: Faker::Time.forward,

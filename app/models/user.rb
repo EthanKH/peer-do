@@ -27,7 +27,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # has_many :tasks, class_name: "Task", foreign_key: "owner_id"
-  has_many :tasks, foreign_key: :owner_id, class_name: "Task"
+  has_many :own_tasks, foreign_key: :owner_id, class_name: "Task"
   has_many :pings, foreign_key: :poker_id
 
   has_many :sent_friend_requests, foreign_key: :sender_id, class_name: "FriendRequest"
@@ -41,7 +41,7 @@ class User < ApplicationRecord
   has_many :receivers, through: :accepted_sent_friend_requests, source: :receiver
   has_many :senders, through: :accepted_received_friend_requests, source: :sender
 
-  has_many :tasks_page, through: :receivers, source: :tasks
+  has_many :tasks_page, through: :receivers, source: :own_tasks
 
 
   validates :username, presence: true, uniqueness: true

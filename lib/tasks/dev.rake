@@ -15,6 +15,22 @@ task({ :sample_data => :environment }) do
     User.destroy_all
   end
 
+  test_usernames = Array.new
+
+  test_usernames << "test"
+  test_usernames << "sample"
+  test_usernames << "alice"
+  test_usernames << "bob"
+
+  test_usernames.each do |username|
+    User.create(
+      email: "#{username}@example.com",
+      password: "password",
+      username: username.downcase,
+      private: [true, false].sample,
+    )
+  end
+
   15.times do
     name = p Faker::Games::Zelda.character
     u = User.create(
@@ -64,11 +80,11 @@ task({ :sample_data => :environment }) do
           task.pokers << sender
         end
 
-        # if rand < 0.25
-        #   task.pings.create(
-        #     poker: sender
-        #   )
-        # end
+        if rand < 0.25
+          task.pings.create(
+            poker: sender
+          )
+        end
       end
     end
   end

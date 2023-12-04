@@ -1,30 +1,34 @@
-user --> user
-  own_photos                        --> own_tasks (user.rb line 30, 44, dev.rake line 54)
-  likes                             --> pings 
-  author_id                         --> poker_id 
+# user --> user
+#   own_photos                        --> own_tasks (user.rb line 30, 44, dev.rake line 54)
+#   likes                             --> pings 
+#   author_id                         --> poker_id 
 
-  sent_follow_requests              --> sent_friend_requests 
-  accepted_sent_follow_requests     --> accepted_sent_friend_requests
-  sender_id                         --> sender_id 
-  received_follow_requests          --> received_friend_requests
-  accepted_received_follow_requests --> accepted_received_friend_requests 
-  recipient_id                      --> receiver_id
-  fan_id                            --> poker_id
-  liked_photos                      --> peer_tasks
-  leaders                           --> receivers
-  followers                         --> senders
-  recipent                          --> receiver
-  sender                            --> sender
-  feed                              --> task_page
+#   sent_follow_requests              --> sent_friend_requests 
+#   accepted_sent_follow_requests     --> accepted_sent_friend_requests
+#   sender_id                         --> sender_id 
+#   received_follow_requests          --> received_friend_requests
+#   accepted_received_follow_requests --> accepted_received_friend_requests 
+#   recipient_id                      --> receiver_id
+#   fan_id                            --> poker_id
+#   liked_photos                      --> peer_tasks
+#   leaders                           --> receivers
+#   followers                         --> senders
+#   recipent                          --> receiver
+#   sender                            --> sender
+#   feed                              --> task_page
 
-photo --> task
+# photo --> task
 
 
 
-likes --> ping
-  fan                               --> poker 
-  fans                              --> pokers
+# likes --> ping
+#   fan                               --> poker 
+#   fans                              --> pokers
 
-follow_request                      --> friend_request
-  recipient                         --> receiver 
-  sender                            --> sender 
+# follow_request                      --> friend_request
+#   recipient                         --> receiver 
+#   sender                            --> sender 
+
+
+
+# look into scopes

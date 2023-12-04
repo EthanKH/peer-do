@@ -53,15 +53,15 @@ task({ :sample_data => :environment }) do
     rand(15).times do
       task = user.own_tasks.create(
         description: Faker::Hobby.activity,
-        # due_date: Faker::Date.forward(days: 30),
-        # due_time: Faker::Time.forward,
+        due_date: Faker::Date.forward(days: 30),
+        due_time: Faker::Time.forward(format: :short),
         ping_frequency: rand(1..10),
         completion: rand(0..100)
       )
 
       user.senders.each do |sender|
-        if rand < 0.5 && !task.peers.include?(sender)
-          task.peers << sender
+        if rand < 0.5 && !task.pokers.include?(sender)
+          task.pokers << sender
         end
 
         # if rand < 0.25
@@ -77,3 +77,5 @@ task({ :sample_data => :environment }) do
   p "There are now #{Task.count} tasks."
   p "There are now #{Ping.count} pings."
 end
+
+# command to check params of a user in rails console  User.first.attributes

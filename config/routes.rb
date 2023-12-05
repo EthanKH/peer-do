@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  get "/:username" => "users#show", as: :user
-  get "/:username" => "tasks#index", as: :my_tasks
+  get ":username" => "users#show", as: :user
+  get ":username" => "tasks#index", as: :my_tasks
+
+  get ":username/peer" => "users#peer", as: :peer
 
 end

@@ -30,3 +30,6 @@
 #   sender                            --> sender 
 
 
+# rails console
+# user = User.find_by(username: 'alice')
+# ctrl + i to summon copilot

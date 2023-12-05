@@ -2,7 +2,7 @@
   <%= @user.username %>
 </h1>
 
-<h2>My Tasks</h2>
+<h2>Friends' Pinged Tasks</h2>
 
 <ul class="nav nav-pills nav-fill">
   <li class="nav-item">
@@ -19,6 +19,6 @@
   </li>-->
 </ul>
 
-<% @user.own_tasks.each do |task| %>
+<% @user.peer_tasks.each do |task| %>
   <%= render "tasks/task_list", task: task %>
 <% end %>

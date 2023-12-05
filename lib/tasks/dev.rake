@@ -47,26 +47,43 @@ task({ :sample_data => :environment }) do
 
   users = User.all
 
-  users.each do |first_user|
-    users.each do |second_user|
-      next if first_user == second_user
+
+  users.each_with_index do |first_user, index|
+    (index + 1).upto(users.length - 1) do |second_user_index|
+      second_user = users[second_user_index]
+  
+      next if first_user == second_user || first_user.sent_friend_requests.exists?(receiver: second_user) || second_user.sent_friend_requests.exists?(receiver: first_user)
+  
       if rand < 0.75
         first_user.sent_friend_requests.create(
           receiver: second_user,
           status: FriendRequest.statuses.keys.sample
         )
       end
-      if rand < 0.75
-        second_user.sent_friend_requests.create(
-          receiver: first_user,
-          status: FriendRequest.statuses.keys.sample
-        )
-      end
     end
   end
+  
+
+  # users.each do |first_user|
+  #   users.each do |second_user|
+  #     next if first_user == second_user
+  #     if rand < 0.75
+  #       first_user.sent_friend_requests.create(
+  #         receiver: second_user,
+  #         status: FriendRequest.statuses.keys.sample
+  #       )
+  #     end
+  #     if rand < 0.75
+  #       second_user.sent_friend_requests.create(
+  #         receiver: first_user,
+  #         status: FriendRequest.statuses.keys.sample
+  #       )
+  #     end
+  #   end
+  # end
 
   users.each do |user|
-    rand(15).times do
+    5.times do
       task = user.own_tasks.create(
         description: [
           "Practice #{Faker::Hobby.activity}",
@@ -79,7 +96,6 @@ task({ :sample_data => :environment }) do
         ping_frequency: rand(1..10),
         completion: rand(0..100)
       )
-
       user.senders.each do |sender|
         if rand < 0.5 && !task.pokers.include?(sender)
           task.pokers << sender

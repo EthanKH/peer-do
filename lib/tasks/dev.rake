@@ -86,10 +86,10 @@ task({ :sample_data => :environment }) do
     5.times do
       task = user.own_tasks.create(
         description: [
-          "Practice #{Faker::Hobby.activity}",
+          "Practice #{Faker::Hobby.activity.downcase}",
           "Catch a #{Faker::Games::Pokemon.name}",
           "Find #{Faker::Games::Zelda.item}",
-          "Eat #{Faker::Food.dish}",
+          "Eat #{Faker::Food.dish.downcase}",
         ].sample,
         due_date: Faker::Date.forward(days: 30),
         due_time: Faker::Time.forward(format: :short),

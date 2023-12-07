@@ -6,14 +6,6 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
-  def increment_counter
-    @task = Task.find(params[:id])
-    @task.increment!(:counter)
-    respond_to do |format|
-      format.js # Assuming you want to use AJAX to increment the counter
-    end
-  end
-
   # GET /tasks/1 or /tasks/1.json
   def show
   end
@@ -29,7 +21,11 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
+    if current_user
+      @task = current_user.own_tasks.build(task_params)
+    else
+      @task = Task.new(task_params)
+    end    
 
     respond_to do |format|
       if @task.save
@@ -73,6 +69,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:name, :description, :completion, :ping_frequency, :viewer_permissions)
+      params.require(:task).permit(:description, :due_date, :due_time, :completion, :ping_frequency, :owner_id)
     end
 end

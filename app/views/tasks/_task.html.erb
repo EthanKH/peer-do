@@ -1,27 +1,45 @@
 <div id="<%= dom_id task %>">
   <p>
-    <strong>Name:</strong>
-    <%= task.name %>
+    <strong>Task Owner:</strong>
+    <%= task.owner.username %>
   </p>
-
   <p>
     <strong>Description:</strong>
     <%= task.description %>
   </p>
 
   <p>
-    <strong>Completion:</strong>
-    <%= task.completion %>
+    <strong>Due Date:</strong>
+    <%= task.due_date.strftime("%m/%d/%Y") %>
   </p>
 
   <p>
-    <strong>Ping frequency:</strong>
+    <strong>Due Time:</strong>
+    <%= task.due_time.strftime("%I:%M %p") %>
+  </p>
+
+  <p>
+    <strong>Completion:</strong>
+    <%= task.completion %>%
+  </p>
+
+  <p>
+    <strong>Ping Frequency:</strong>
     <%= task.ping_frequency %>
   </p>
 
   <p>
-    <strong>Viewer permissions:</strong>
-    <%= task.viewer_permissions %>
+    <strong>Ping Count:</strong>
+    <%= task.pings_count %>
+  </p>
+
+  <p>
+    <strong>Created at:</strong>
+    <%= task.created_at.strftime("%m/%d/%Y %I:%M %p") %>
+  </p>
+  
+  <p><strong>Updated at: </strong>
+    <%= task.updated_at.strftime("%m/%d/%Y %I:%M %p") %>
   </p>
 
 </div>

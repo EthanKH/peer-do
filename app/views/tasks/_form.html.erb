@@ -12,13 +12,18 @@
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
   </div>
 
   <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+    <%= form.label :due_date, style: "display: block" %>
+    <%= form.date_field :due_date %>
+  </div>
+
+  <div>
+    <%= form.label :due_time, style: "display: block" %>
+    <%= form.time_field :due_time %>
   </div>
 
   <div>
@@ -31,18 +36,11 @@
     <%= form.number_field :ping_frequency %>
   </div>
 
-  <div>
-    <%= form.label :viewer_permissions, style: "display: block" %>
-    <%= form.text_field :viewer_permissions %>
-  </div>
+<!--  <div>-->
+    <%#= form.label :owner_id, style: "display: block" %>
+    <%#= form.text_field :owner_id %>
+<!--  </div>-->
 
-  <div>
-    <!-- Add a button to increment the counter -->
-    <%= button_to "Increment Counter", increment_counter_task_path(task), method: :put, remote: true %>
-    <!-- Display the counter value -->
-    <p>Counter: <%= task.counter %></p>
-  </div>
-  
   <div>
     <%= form.submit %>
   </div>

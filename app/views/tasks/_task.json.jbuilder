@@ -1,2 +1,2 @@
-json.extract! task, :id, :description, :due_date, :due_time, :completion, :ping_frequency, :owner_id, :created_at, :updated_at
+json.extract! task, :id, :name, :description, :completion, :ping_frequency, :viewer_permissions, :created_at, :updated_at
 json.url task_url(task, format: :json)

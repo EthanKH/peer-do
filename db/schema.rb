@@ -10,71 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_30_225230) do
-  create_table "friend_requests", force: :cascade do |t|
-    t.integer "receiver_id", null: false
-    t.integer "sender_id", null: false
-    t.string "status", default: "pending"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["receiver_id"], name: "index_friend_requests_on_receiver_id"
-    t.index ["sender_id"], name: "index_friend_requests_on_sender_id"
-  end
-
-  create_table "pings", force: :cascade do |t|
-    t.integer "poker_id", null: false
-    t.integer "task_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["poker_id"], name: "index_pings_on_poker_id"
-    t.index ["task_id"], name: "index_pings_on_task_id"
-  end
-
-  create_table "taskies", force: :cascade do |t|
-    t.text "description"
-    t.date "due_date"
-    t.time "due_time"
-    t.integer "completion"
-    t.integer "ping_frequency"
-    t.integer "owner_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["owner_id"], name: "index_taskies_on_owner_id"
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2023_11_27_213929) do
   create_table "tasks", force: :cascade do |t|
-    t.text "description"
-    t.date "due_date"
-    t.time "due_time"
+    t.string "name"
+    t.string "description"
     t.integer "completion"
     t.integer "ping_frequency"
+    t.string "viewer_permissions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "owner_id", null: false
-    t.integer "pings_count", default: 0
-    t.index ["owner_id"], name: "index_tasks_on_owner_id"
+    t.integer "counter"
   end
 
   create_table "users", force: :cascade do |t|
-    t.text "email", default: "", null: false
+    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.text "username"
-    t.boolean "private", default: true
+    t.string "username"
+    t.boolean "private"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "pings_count", default: 0
-    t.integer "tasks_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "friend_requests", "users", column: "receiver_id"
-  add_foreign_key "friend_requests", "users", column: "sender_id"
-  add_foreign_key "pings", "tasks"
-  add_foreign_key "pings", "users", column: "poker_id"
-  add_foreign_key "taskies", "owners"
-  add_foreign_key "tasks", "users", column: "owner_id"
 end

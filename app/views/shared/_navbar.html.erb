@@ -53,6 +53,9 @@
           </li>
 
           <li class="nav-item">
+            <%= link_to "My Tasks", user_path(current_user.username), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
             <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link" %>
           </li>
 

@@ -1,11 +1,13 @@
 <ul>
   <div class="card" style="width: 18rem;">
-    <div class="card-header">
-      <%= task.owner.username %>
-    </div>
-    <div class="card-header">
-      <%= task.description %>
-    </div>
+      <div class="card-header">
+        <strong>Task Owner: </strong>
+        <%= task.owner.username %>
+      </div>
+      <div class="card-header">
+        <strong>Description: </strong>
+        <%= task.description %>
+      </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Ping me!</li>
       <li class="list-group-item">Due Date: <%= task.due_date.strftime("%m/%d/%Y") %></li>

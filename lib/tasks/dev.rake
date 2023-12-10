@@ -116,3 +116,5 @@ task({ :sample_data => :environment }) do
 end
 
 # command to check params of a user in rails console  User.first.attributes
+# User.find(number)
+

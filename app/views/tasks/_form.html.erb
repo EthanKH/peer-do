@@ -23,7 +23,7 @@
 
   <div>
     <%= form.label :due_time, style: "display: block" %>
-    <%= form.time_field :due_time %>
+    <%= form.time_field :due_time, as: :time, ampm: true %>
   </div>
 
   <div>
@@ -45,4 +45,3 @@
     <%= form.submit %>
   </div>
 <% end %>
-

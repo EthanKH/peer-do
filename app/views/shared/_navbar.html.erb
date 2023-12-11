@@ -11,9 +11,12 @@
         <li class="nav-item">
           <%= link_to "All tasks", tasks_path, class: "nav-link" %>
         </li>
+      <% if user_signed_in? %>
         <li class="nav-item">
-          <a href="/tasks/new" class="btn btn-primary">Create New Task</a>
+          <a href="/tasks/new" class="btn btn-secondary">Create New Task</a>
         </li>
+      <% else %>
+      <% end %>
       </ul>
     </div>
     <ul class="navbar-nav">

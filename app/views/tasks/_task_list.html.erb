@@ -1,18 +1,54 @@
 <ul>
   <div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-horizontal">
       <div class="card-header">
         <strong>Task Owner: </strong>
-        <%= task.owner.username %>
+        <% if task.owner.og_name != nil %>
+          <%= task.owner.og_name %>
+        <% else %>
+          <%= task.owner.username %>
+        <% end %>
       </div>
+      <li class="list-group-item"><strong>Due Date: </strong><%= task.due_date.strftime("%m/%d/%Y") %></li>
+    </ul>
+    <ul class="list-group list-group-horizontal">
       <div class="card-header">
         <strong>Description: </strong>
         <%= task.description %>
       </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Ping me!</li>
-      <li class="list-group-item">Due Date: <%= task.due_date.strftime("%m/%d/%Y") %></li>
-      <li class="list-group-item">Due Time: <%= task.due_time.strftime("%I:%M %p") %></li>
+      <li class="list-group-item"><strong>Due Time: </strong><%= task.due_time.strftime("%I:%M %p") %>
+      </li>
+    </ul>
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item"><strong>Ping me!</strong></li>
+      <li class="list-group-item"><strong>Current Pings: </strong><%= task.owner.pings_count %></li>
       <li class="list-group-item"><%= link_to "More details", task %></li>
     </ul>
   </div>
 </ul>
+
+<!-- Old Styling -->
+<!--
+<ul>
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      <strong>Task Owner: </strong>
+      <%# if task.owner.og_name != nil %>-->
+<%#= task.owner.og_name %>
+<%# else %>
+<%#= task.owner.username %>
+<%# end %>
+<!--    </div>
+    <div class="card-header">
+      <strong>Description: </strong>
+      <%#= task.description %>-->
+<!--    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Ping me!</li>
+      <li class="list-group-item">Due Date: <%#= task.due_date.strftime("%m/%d/%Y") %></li>
+      <li class="list-group-item">Due Time: <%#= task.due_time.strftime("%I:%M %p") %></li>
+      <li class="list-group-item"><%#= link_to "More details", task %></li>
+    </ul>
+  </div>
+</ul>
+-->

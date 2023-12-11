@@ -12,13 +12,19 @@
     <%= link_to "Friends' Pinged Tasks", peer_path(@user.username), class: "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to "Friends List", receiver_path(@user.username), class: "nav-link" %>
+    <%= link_to "Friends List", user_friends_path(@user.username), class: "nav-link" %>
   </li>
-<!--  <li class="nav-item">
-    <a class="nav-link disabled">Disabled</a>
-  </li>-->
 </ul>
 
+<% current_owner = nil %>
 <% @user.peer_tasks.each do |task| %>
+  <% if current_owner != task.owner %>
+    <% current_owner = task.owner %>
+      <% if task.owner.og_name != nil %>
+          <h3><%= task.owner.og_name %>'s Tasks</h3>
+        <% else %>
+          <h3><%= task.owner.username %>'s Tasks</h3>
+        <% end %>
+  <% end %>
   <%= render "tasks/task_list", task: task %>
 <% end %>

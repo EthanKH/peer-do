@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.find_by!(username: params[:username])
   end
 
-  def receiver
+  def friends
     @user = User.find_by!(username: params[:username])
     @accepted_requests = FriendRequest.accepted.includes(:receiver)
   end

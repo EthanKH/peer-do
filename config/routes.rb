@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   get ":username" => "tasks#index", as: :my_tasks
 
   get ":username/peer" => "users#peer", as: :peer
-  get ":username/receiver" => "users#receiver", as: :receiver
+  get ":username/friends" => "users#friends", as: :user_friends
 
 end

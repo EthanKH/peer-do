@@ -12,11 +12,8 @@
     <%= link_to "Friends' Pinged Tasks", peer_path(@user.username), class: "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to "Friends List", receiver_path(@user.username), class: "nav-link" %>
+    <%= link_to "Friends List", user_friends_path(@user.username), class: "nav-link" %>
   </li>
-<!--  <li class="nav-item">
-    <a class="nav-link disabled">Disabled</a>
-  </li>-->
 </ul>
 
 <% @user.own_tasks.each do |task| %>

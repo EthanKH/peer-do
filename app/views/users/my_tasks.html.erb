@@ -21,12 +21,25 @@
 <% @user.own_tasks.order(due_date: :asc, due_time: :asc).group_by { |task| task.due_date.month }.each do |month, tasks| %>
   <h2><%= tasks.first.due_date.strftime("%B") %></h2>
   <div class="row">
-    <% tasks.each_slice(3) do |tasks_group| %>
-      <% tasks_group.each do |task| %>
-        <div class="col-md-4">
-          <%= render "tasks/task_list", task: task %>
-        </div>
-      <% end %>
+    <% tasks.each do |task| %>
+      <div class="col-md-12">
+        <%= render "tasks/task_list", task: task %>
+      </div>
     <% end %>
   </div>
 <% end %>
+
+<!--If I want 3 tasks per row-->
+<%# @user.own_tasks.order(due_date: :asc, due_time: :asc).group_by { |task| task.due_date.month }.each do |month, tasks| %>
+<!--  <h2><%#= tasks.first.due_date.strftime("%B") %></h2>
+  <div class="row">
+    <%# tasks.each_slice(3) do |tasks_group| %>-->
+      <%# tasks_group.each do |task| %>
+<!--        <div class="col-md-4">-->
+          <%#= render "tasks/task_list", task: task %>
+<!--        </div>-->
+      <%# end %>
+    <%# end %>
+<!--  </div>-->
+<%# end %>
+<!---->

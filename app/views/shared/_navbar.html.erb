@@ -11,43 +11,13 @@
         <li class="nav-item">
           <%= link_to "All tasks", tasks_path, class: "nav-link" %>
         </li>
-        <%# if user_signed_in? %>
-<!--          <li class="nav-item">-->
-            <%#= link_to own_tasks_path(current_user.username), class: "nav-link" do %>
-<!--              <i class="fas fa-users fa-fw"></i>
-              My Tasks
-            <%# end %>-->
-<!--          </li>
-          <li class="nav-item">
-            <%#= link_to friends_tasks_path(current_user.username), class: "nav-link" do %>-->
-<!--              <i class="fas fa-compass fa-fw"></i>
-              Friends 
-            <%# end %>-->
-<!--          </li>-->
-        <%# end %>
+        <li class="nav-item">
+          <a href="/tasks/new" class="btn btn-primary">Create New Task</a>
+        </li>
       </ul>
     </div>
     <ul class="navbar-nav">
       <% if user_signed_in? %>
-        <!-- <li class="nav-item">-->
-        <%#= link_to new_photo_path, class: "nav-link" do %>
-          <!--            <i class="fas fa-plus-circle"></i>
-
-            Add post
-          <%# end %>-->
-          <!--        </li>
-        <li class="nav-item">
-          <%#= link_to user_path(current_user.username), class: "nav-link" do %>-->
-          <!--            <i class="fas fa-home fa-fw"></i>
-
-            Your profile
-          <%# end %>-->
-          <!--    </li> -->
-          <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <%#= current_user.username %>-->
-          <!--      </a>-->
-
           <li class="nav-item">
             <%= link_to current_user.username, my_tasks_path(current_user.username), class: "nav-link" %>
           </li>

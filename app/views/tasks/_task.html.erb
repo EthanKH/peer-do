@@ -3,7 +3,11 @@
     <div class="card" style="width: 18rem;">
       <div class="card-header">
         <strong>Task Owner: </strong>
-        <%= task.owner.og_name %>
+        <% if task.owner.og_name != nil %>
+          <%= task.owner.og_name %>
+        <% else %>
+          <%= task.owner.username %>
+        <% end %>
       </div>
       <div class="card-header">
         <strong>Description: </strong>

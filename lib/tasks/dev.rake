@@ -26,6 +26,7 @@ task({ :sample_data => :environment }) do
       password: "password",
       username: username.downcase,
       private: [true, false].sample,
+      og_name: username.capitalize
     )
   end
 

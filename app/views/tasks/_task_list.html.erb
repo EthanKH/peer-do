@@ -20,10 +20,15 @@
       </li>
     </ul>
     <ul class="list-group list-group-horizontal">
-      <li class="list-group-item"><strong>Ping me!</strong></li>
+      <li class="list-group-item"><strong><button>Ping me!</button></strong></li>
       <li class="list-group-item"><strong>Current Pings: </strong><%= task.owner.pings_count %></li>
       <li class="list-group-item"><%= link_to "More details", task %></li>
     </ul>
+    <% if current_user && current_user.username == task.owner.username %>
+      <li class="list-group-item">
+        <%= button_to "Delete Task", task_path(task), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      </li>
+    <% end %>
   </div>
 </ul>
 

@@ -8,6 +8,9 @@
     <p></p>
     <a href="/<%= current_user.username %>/peer" class="btn btn-light">Check on your friends' tasks!</a>
     <p></p>
+    <p class="nav-item">
+      <%= link_to "Search for Users", users_path, class: "nav-link" %>
+    </p>
   </div>
 <% else %>
   <div class="text-center">
@@ -28,7 +31,7 @@
   <div style="text-align: center; width: 60%; margin: 0 auto;">
     Thank you for checking out Taskie! 
     <p></p>
-     ~ Ethan Huang ~
+    ~ Ethan Huang ~
   </div>
   <p></p>
   <div style="text-align: center;">

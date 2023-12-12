@@ -94,6 +94,7 @@ task({ :sample_data => :environment }) do
         due_date: Faker::Date.forward(days: 30),
         due_time: Faker::Time.forward(format: :short),
         ping_frequency: rand(1..10),
+        completion: false
       )
       user.senders.each do |sender|
         if rand < 0.5 && !task.pokers.include?(sender)

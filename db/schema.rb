@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_10_055406) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_12_074052) do
   create_table "friend_requests", force: :cascade do |t|
     t.integer "receiver_id", null: false
     t.integer "sender_id", null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_055406) do
     t.text "description"
     t.date "due_date"
     t.time "due_time"
-    t.integer "completion"
+    t.boolean "completion", default: false
     t.integer "ping_frequency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

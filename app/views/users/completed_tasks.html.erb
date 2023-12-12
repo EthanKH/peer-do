@@ -1,0 +1,40 @@
+<h1>
+  <strong><%= @user.og_name %></strong>
+    <% if current_user && current_user.username == @user.username %>
+      <% else %>
+        <p></p>
+        <button type="button" class="btn btn-info">Send friend Request</button>
+    <% end %>
+</h1>
+
+<ul class="nav nav-tabs nav-fill" style="border: 2px solid #333; border-radius: 10px;">
+  <li class="nav-item">
+    <%= link_to "My Tasks", my_tasks_path(@user.username), class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Completed Tasks", completed_tasks_path(@user.username), class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Friends' Pinged Tasks", peer_path(@user.username), class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Friends List", user_friends_path(@user.username), class: "nav-link" %>
+  </li>
+</ul>
+
+<h2><strong>Completed Tasks</strong></h2>
+
+<% current_month = nil %>
+
+<% @user.own_tasks.order(due_date: :asc, due_time: :asc).group_by { |task| task.due_date.month }.each do |month, tasks| %>
+  <h2><%= tasks.first.due_date.strftime("%B") %></h2>
+  <div class="row">
+    <% tasks.each do |task| %>
+      <% if task.completion == true %>
+        <div class="col-md-12">
+          <%= render "tasks/task_list", task: task %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

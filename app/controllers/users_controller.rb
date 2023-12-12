@@ -3,6 +3,10 @@ class UsersController < ApplicationController
     @user = User.find_by!(username: params[:username])
   end
 
+  def completed_tasks
+    @user = User.find_by!(username: params[:username])
+  end
+
   def show
     @user = User.find_by!(username: params[:username])
   end

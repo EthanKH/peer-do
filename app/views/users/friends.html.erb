@@ -12,6 +12,9 @@
     <%= link_to "My Tasks", my_tasks_path(@user.username), class: "nav-link" %>
   </li>
   <li class="nav-item">
+    <%= link_to "Completed Tasks", completed_tasks_path(@user.username), class: "nav-link" %>
+  </li>
+  <li class="nav-item">
     <%= link_to "Friends' Pinged Tasks", peer_path(@user.username), class: "nav-link" %>
   </li>
   <li class="nav-item">

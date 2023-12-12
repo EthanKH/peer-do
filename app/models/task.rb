@@ -3,7 +3,7 @@
 # Table name: tasks
 #
 #  id             :integer          not null, primary key
-#  completion     :integer
+#  completion     :boolean          default(FALSE)
 #  description    :text
 #  due_date       :date
 #  due_time       :time
@@ -28,9 +28,9 @@ class Task < ApplicationRecord
   has_many :pokers, through: :pings
 
   validates :description, presence: true
-  # validates :due_date, presence: true
-  # validates :due_time, presence: true
+  validates :due_date, presence: true
+  validates :due_time, presence: true
   validates :ping_frequency, presence: true
-  validates :completion, presence: true
+  # validates :completion, presence: true
   
 end

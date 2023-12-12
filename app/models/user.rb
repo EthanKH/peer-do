@@ -54,7 +54,8 @@ class User < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[id email username created_at updated_at] # List the attributes you want to allow for searching
+    %w[id email username created_at updated_at] 
+    # List the attributes you want to allow for searching
   end
 
   # validates :username, presence: true, uniqueness: true

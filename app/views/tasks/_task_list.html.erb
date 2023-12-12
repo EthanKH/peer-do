@@ -55,7 +55,7 @@
       <% if task.owner %>
         <li class="list-group-item" style="width: 20rem; font-size: 24px; text-align: center; align-items: center; justify-content: center;">
           <p>
-            <%= link_to "Go to #{task.owner.username.capitalize}'s profile!", user_path(task.owner.username) %>
+            <%= link_to "Go to #{task.owner.og_name}'s profile!", user_path(task.owner.username) %>
           </p>
         </li>
       <% end %>

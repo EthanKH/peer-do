@@ -34,7 +34,7 @@ task({ :sample_data => :environment }) do
 
   names_set = Set.new
   
-  15.times do
+  26.times do
     og_name = p Faker::Games::Zelda.character
     fixed_name = og_name.downcase.gsub(/[^0-9a-z ]/, '').gsub(' ', '_')
   

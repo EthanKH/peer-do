@@ -14,7 +14,9 @@
 
   <body>
     <%= render partial: "shared/navbar" %>
-    <style> body{background-color: #f9e8ce; }</style>
+    <style>
+      body{background-color: #f9e8ce; }
+    </style>
     <div class="container">
       <div class="row mb-4">
         <div class="col-md-6 offset-md-3">
@@ -29,6 +31,23 @@
       </div>
       <%= yield %>
     </div>
+
+    <footer style="position: fixed; left: 0; bottom: 0;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div style="display: flex; align-items: center;">
+              <a href="https://github.com/EthanKH" style="margin-right: 10px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733609.png" style="height: 50px; width: 50px;" alt="GitHub">
+              </a>
+              <a href="https://linkedin.com/in/ethanhuang12/" style="margin-left: 10px;">
+                <img src="https://cdn-icons-png.flaticon.com/256/174/174857.png" style="height: 50px; width: 50px;" alt="LinkedIn">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
 
   </body>
 </html>

@@ -31,10 +31,10 @@
     <% if current_user && current_user.username == task.owner.username %>
       <li class="list-group-item" style="width: 10rem; text-align: center; align-items: center; justify-content: center;">
         <p>
-          <button type="button" class="btn btn-primary">Done!</button>
+          <button type="button" class="btn btn-success">Done!</button>
         </p>
         <p>
-          <button type="button" class="btn btn-success">
+          <button type="button" class="btn btn-secondary">
             <%= link_to "More details", task, style: "color: white; text-decoration: none;" %>
           </button>      
         </p>
@@ -43,6 +43,13 @@
         </p>
       </li>
     <% else %>
+      <% if task.owner %>
+        <li class="list-group-item" style="width: 20rem; font-size: 24px; text-align: center; align-items: center; justify-content: center;">
+          <p>
+            <%= link_to "Go to #{task.owner.username.capitalize}'s profile!", user_path(task.owner.username) %>
+          </p>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 </div>

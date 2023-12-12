@@ -8,14 +8,13 @@
 
     <%= render partial: "shared/cdn_assets" %>
 
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <%= render partial: "shared/navbar" %>
-
+    <style> body{background-color: #f9e8ce; }</style>
     <div class="container">
       <div class="row mb-4">
         <div class="col-md-6 offset-md-3">

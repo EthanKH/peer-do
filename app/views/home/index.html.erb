@@ -2,7 +2,11 @@
 <div class="text-center">
   <h1>Welcome to Taskie, <%= current_user.username.capitalize %>!</h1>
   <p></p>
-  <a href="/tasks/new" class="btn btn-secondary">Create New Task</a>
+  <a href="/tasks/new" class="btn btn-primary">Create New Task</a>
+  <p></p>
+  <a href="/<%= current_user.username %>/my_tasks" class="btn btn-info">Go to your tasks!</a>
+  <p></p>
+  <a href="/<%= current_user.username %>/peer" class="btn btn-light">Check on your friends' tasks!</a>
 </div>
 <% else %>
   <div class="text-center">

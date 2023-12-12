@@ -1,6 +1,14 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true)
+    if params[:q].present? && !params[:q].values.all?(&:blank?)
+      @users = @q.result(distinct: true)
+    else
+      @users = User.none
+    end
+    # comment out lines 6-10 if all users need to be viewed
   end
 
   def my_tasks

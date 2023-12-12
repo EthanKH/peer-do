@@ -1,24 +1,25 @@
 <% if user_signed_in? %>
-<div class="text-center">
-  <h1>Welcome to Taskie, <%= current_user.username.capitalize %>!</h1>
-  <p></p>
-  <a href="/tasks/new" class="btn btn-primary">Create New Task</a>
-  <p></p>
-  <a href="/<%= current_user.username %>/my_tasks" class="btn btn-info">Go to your tasks!</a>
-  <p></p>
-  <a href="/<%= current_user.username %>/peer" class="btn btn-light">Check on your friends' tasks!</a>
-</div>
+  <div class="text-center">
+    <h1>Welcome to Taskie, <%= current_user.username.capitalize %>!</h1>
+    <p></p>
+    <a href="/tasks/new" class="btn btn-primary">Create New Task</a>
+    <p></p>
+    <a href="/<%= current_user.username %>/my_tasks" class="btn btn-info">Go to your tasks!</a>
+    <p></p>
+    <a href="/<%= current_user.username %>/peer" class="btn btn-light">Check on your friends' tasks!</a>
+    <p></p>
+  </div>
 <% else %>
   <div class="text-center">
     <h1>Welcome to Taskie!</h1>
     <p></p>
   </div>
 
-    <div>Taskie is a To-Do list that combines the social aspect of accountability (or peer pressure) from your friends to help keep you on track of your goals! Your tasks will be publicly available for only the friends you've added to see. Ping your friends on tasks that they have yet to complete, just be nice about it!</div>
-    <ul>
-      <li>Create tasks for yourself!</li>
-      <li>Ping your friends, keep them accountable!</li>
-      <li>Get more done!</li>
-    </ul>
-  </div>
+  <div>Taskie is a To-Do list that combines the social aspect of accountability (or peer pressure) from your friends to help keep you on track of your goals! Your tasks will be publicly available for only the friends you've added to see. Ping your friends on tasks that they have yet to complete, just be nice about it!</div>
+  <ul>
+    <li>Create tasks for yourself!</li>
+    <li>Ping your friends, keep them accountable!</li>
+    <li>Get more done!</li>
+  </ul>
+</div>
 <% end %>

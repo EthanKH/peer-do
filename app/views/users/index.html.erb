@@ -1,15 +1,40 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>All Users</h1>
+<h1>Search for a User</h1>
+<%= search_form_for @q do |f| %>
+  <%= f.label :username_cont %>
+  <%= f.search_field :username_eq %>
+  <%= f.submit "Search" %>
+<% end %>
+<!--if just searching for username containing characters-->
+<%#= f.search_field :username_cont %>
 
+<% if @users.present? %>
+  <p></p>
+  <h4>Search Results</h4>
+  <ul id="users">
+    <% @users.each do |user| %>
+      <ul class="list-group">
+        <li class="list-group-item" style="width: 20rem;">
+          <%= link_to user.og_name, user_path(user.username) %>
+          <p></p>
+        </li>
+      </ul>
+    <% end %>
+  </ul>
+<% else %>
+  <p></p> No users found.
+<% end %>
 
+<!--To See All Users, keep for reference-->
+<!--<h1>All Users</h1>
 <ul id="users">
-  <% @users.each do |user| %>
-    <ul class="list-group">
+  <%# @users.each do |user| %>-->
+<!--    <ul class="list-group">
       <li class="list-group-item" style="width: 20rem;">
-        <%= link_to user.username, user_path(user.username) %>
-        <p></p>
+        <%#= link_to user.og_name, user_path(user.username) %>-->
+<!--        <p></p>
       </li>
     </ul>
-  <% end %>
-</ul>
+  <%# end %>-->
+<!--</ul>-->

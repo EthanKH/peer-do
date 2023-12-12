@@ -1,7 +1,8 @@
 <div class="card" style="width: 65rem; margin-bottom: 20px;">
   <ul class="list-group list-group-horizontal">
     <li class="list-group-item" style="width: 20rem; font-size: 24px; text-align: center; align-items: center; justify-content: center;">
-      <strong>Description: </strong> <p></p>
+      <strong>Description: </strong> 
+      <p></p>
       <%= task.description %>
     </li>
     <li class="list-group-item" style="width: 20rem; font-size: 24px; text-align: center; align-items: center; justify-content: center;">
@@ -22,26 +23,34 @@
     </li>
     <li class="list-group-item" style="width: 15rem; font-size: 24px; text-align: center; align-items: center; justify-content: center;">
       <p>
-        <strong>Current Pings: </strong><%= task.owner.pings_count %>
+        <strong>Current Pings: </strong><%= task.pings_count %>
       </p>
       <p>
         <strong><button type="button" class="btn btn-warning">Ping me!</button></strong>
       </p>
     </li>
     <% if current_user && current_user.username == task.owner.username %>
-      <li class="list-group-item" style="width: 10rem; text-align: center; align-items: center; justify-content: center;">
-        <p>
-          <button type="button" class="btn btn-success">Done!</button>
-        </p>
-        <p>
-          <button type="button" class="btn btn-secondary">
-            <%= link_to "More details", task, style: "color: white; text-decoration: none;" %>
-          </button>      
-        </p>
-        <p>
-          <%= button_to "Delete Task", task_path(task), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-        </p>
-      </li>
+      <% if task.completion == false %>
+        <li class="list-group-item" style="width: 10rem; text-align: center; align-items: center; justify-content: center;">
+          <p>
+            <button type="button" class="btn btn-success">Done!</button>
+          </p>
+          <p>
+            <button type="button" class="btn btn-secondary">
+              <%= link_to "Edit Task", task, style: "color: white; text-decoration: none;" %>
+            </button>
+          </p>
+          <p>
+            <%= button_to "Delete Task", task_path(task), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          </p>
+        </li>
+      <% else %>
+        <li class="list-group-item" style="width: 10rem; text-align: center; align-items: center; justify-content: center;">
+          <p>
+            <%= button_to "Delete Task", task_path(task), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          </p>
+        </li>
+      <% end %>
     <% else %>
       <% if task.owner %>
         <li class="list-group-item" style="width: 20rem; font-size: 24px; text-align: center; align-items: center; justify-content: center;">
@@ -62,17 +71,17 @@
       <div class="card-header">
         <strong>Task Owner: </strong>
         <%# if task.owner.og_name != nil %>-->
-          <%#= task.owner.og_name %>
-        <%# else %>
-          <%#= task.owner.username %>
-        <%# end %>
+<%#= task.owner.og_name %>
+<%# else %>
+<%#= task.owner.username %>
+<%# end %>
 <!--      </div>
       <li class="list-group-item"><strong>Due Date: </strong><%#= task.due_date.strftime("%m/%d/%Y") %></li>
       <li class="list-group-item"><strong><button type="button" class="btn btn-warning">Ping me!</button></strong></li>
       <li class="list-group-item"><strong>Current Pings: </strong><%#= task.owner.pings_count %></li>
       <%# if current_user && current_user.username == task.owner.username %>-->
 <!--        <li class="list-group-item"><button type="button" class="btn btn-primary"> Done!</button></li>-->
-      <%# end %>
+<%# end %>
 <!--
     </ul>
     <ul class="list-group list-group-horizontal">

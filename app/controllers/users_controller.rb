@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def index
+    @users = User.all
+  end
+
   def my_tasks
     @user = User.find_by!(username: params[:username])
   end

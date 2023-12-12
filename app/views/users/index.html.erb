@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>All Users</h1>
+
+
+<ul id="users">
+  <% @users.each do |user| %>
+    <ul class="list-group">
+      <li class="list-group-item" style="width: 20rem;">
+        <%= link_to user.username, user_path(user.username) %>
+        <p></p>
+      </li>
+    </ul>
+  <% end %>
+</ul>

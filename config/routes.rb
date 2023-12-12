@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :pings
   resources :friend_requests
 
+  get "users" => "users#index", as: :users
   get ":username" => "users#show", as: :user
   get ":username/my_tasks" => "users#my_tasks", as: :my_tasks
   get ":username/completed_tasks" => "users#completed_tasks", as: :completed_tasks

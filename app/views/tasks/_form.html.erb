@@ -2,7 +2,6 @@
   <% if task.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
       <ul>
         <% task.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -25,6 +24,8 @@
     <%= form.label :due_time, style: "display: block" %>
     <%= form.time_field :due_time, as: :time, ampm: true %>
   </div>
+
+
 
   <div>
     <%= form.label :ping_frequency, style: "display: block" %>

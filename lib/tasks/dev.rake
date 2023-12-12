@@ -30,10 +30,23 @@ task({ :sample_data => :environment }) do
     )
   end
 
-  #generate 15 random users
+  require 'set'
+
+  names_set = Set.new
+  
   15.times do
     og_name = p Faker::Games::Zelda.character
     fixed_name = og_name.downcase.gsub(/[^0-9a-z ]/, '').gsub(' ', '_')
+  
+    # Check if the fixed_name already exists
+    while names_set.include?(fixed_name)
+      og_name = p Faker::Games::Zelda.character
+      fixed_name = og_name.downcase.gsub(/[^0-9a-z ]/, '').gsub(' ', '_')
+    end
+  
+    # Add the fixed_name to the set to avoid repetition
+    names_set << fixed_name
+  
     u = User.create(
       email: "#{fixed_name}@example.com",
       password: "password",
@@ -41,10 +54,10 @@ task({ :sample_data => :environment }) do
       private: [true, false].sample,
       og_name: og_name
     )
-
+  
     p u.errors.full_messages
   end
-
+  
   users = User.all
 
   users.each_with_index do |first_user, index|
@@ -94,7 +107,7 @@ task({ :sample_data => :environment }) do
         due_date: Faker::Date.forward(days: 30),
         due_time: Faker::Time.forward(format: :short),
         ping_frequency: rand(1..10),
-        completion: false
+        completion: [true, false].sample
       )
       user.senders.each do |sender|
         if rand < 0.5 && !task.pokers.include?(sender)

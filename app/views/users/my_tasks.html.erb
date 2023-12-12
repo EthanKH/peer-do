@@ -30,9 +30,11 @@
   <h2><%= tasks.first.due_date.strftime("%B") %></h2>
   <div class="row">
     <% tasks.each do |task| %>
-      <div class="col-md-12">
-        <%= render "tasks/task_list", task: task %>
-      </div>
+      <% if task.completion == false %>
+        <div class="col-md-12">
+          <%= render "tasks/task_list", task: task %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 <% end %>

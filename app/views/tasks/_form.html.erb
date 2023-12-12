@@ -27,13 +27,14 @@
   </div>
 
   <div>
+  <!-- Change % to boolean -->
     <%= form.label :completion, style: "display: block" %>
     <%= form.number_field :completion %>
   </div>
 
   <div>
     <%= form.label :ping_frequency, style: "display: block" %>
-    <%= form.number_field :ping_frequency %>
+    <%= form.number_field :ping_frequency, placeholder: 'Enter in seconds' %>
   </div>
 
 <!--  <div>-->

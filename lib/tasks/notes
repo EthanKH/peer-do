@@ -33,3 +33,11 @@
 # rails console
 # user = User.find_by(username: 'alice')
 # ctrl + i to summon copilot
+#
+#
+# task column 1, task description
+# task column 2, task owner, due date, due time
+# task column 3, current pings, ping me
+# below, more details --> edit, done, delete
+# move tabs above tab name
+# add link to my tasks and friends tasks on home page after signup

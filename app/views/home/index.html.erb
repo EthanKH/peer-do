@@ -1,8 +1,8 @@
 <% if user_signed_in? %>
 <div class="text-center">
-  <h1>Welcome to Taskie <%= current_user.username %>!</h1>
+  <h1>Welcome to Taskie, <%= current_user.username.capitalize %>!</h1>
   <p></p>
-  <a href="/tasks/new" class="btn btn-primary">Create New Task</a>
+  <a href="/tasks/new" class="btn btn-secondary">Create New Task</a>
 </div>
 <% else %>
   <div class="text-center">

@@ -74,6 +74,20 @@ class TasksController < ApplicationController
     render json: { pings_count: @task.pings_count }
   end
 
+  def toggle_completion
+    @task = Task.find(params[:id]) # Ensure you're using the correct param name (it might be :id, not :task_id)
+    @task.update(completion: !@task.completion)
+  
+    respond_to do |format|
+      if @task.save
+        format.json { head :no_content }
+      else
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task

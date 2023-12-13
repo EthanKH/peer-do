@@ -35,7 +35,7 @@
         <% if task.completion == false %>
           <li class="list-group-item" style="width: 10rem; text-align: center; align-items: center; justify-content: center;">
             <p>
-              <button type="button" class="btn btn-success">Done!</button>
+              <button type="button" class="btn btn-success done-button" data-task-id="<%= task.id %>">Done!</button>
             </p>
             <p>
               <button type="button" class="btn btn-secondary">

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :tasks do
     post "ping_task", on: :member
+    patch 'toggle_completion', on: :member
   end
 
   resources :pings

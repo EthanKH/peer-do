@@ -1,4 +1,4 @@
-# user --> user
+<!-- # user --> user
 #   own_photos                        --> own_tasks (user.rb line 30, 44, dev.rake line 54)
 #   likes                             --> pings 
 #   author_id                         --> poker_id 
@@ -28,6 +28,15 @@
 # follow_request                      --> friend_request
 #   recipient                         --> receiver 
 #   sender                            --> sender 
+
+
+<!-- //= link_tree ../images
+//= link_directory ../stylesheets .css
+//= link_tree ../../javascript .js
+//= link_tree ../../../vendor/javascript .js
+//= link application.css
+//= link ping_task.js -->
+
 
 
 # rails console
@@ -93,4 +102,4 @@
 # ### VS Code extensions:
 # - aliariff.vscode-erb-beautify
 # - mbessey.vscode-rufo
-# - vortizhe.simple-ruby-erb
+# - vortizhe.simple-ruby-erb -->

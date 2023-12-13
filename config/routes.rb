@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
-
   root "home#index"
-  
+
   devise_for :users
 
-  resources :tasks
+  resources :tasks do
+    post "ping_task", on: :member
+  end
+
   resources :pings
   resources :friend_requests, only: [] do
     member do
-      post 'accept', to: 'friend_requests#accept', as: :accept
-      delete 'reject', to: 'friend_requests#reject', as: :reject
+      post "accept", to: "friend_requests#accept", as: :accept
+      delete "reject", to: "friend_requests#reject", as: :reject
     end
   end
   get "users" => "users#index", as: :users
@@ -21,5 +23,4 @@ Rails.application.routes.draw do
 
   get ":username/peer" => "users#peer", as: :peer
   get ":username/friends" => "users#friends", as: :user_friends
-
 end

@@ -27,6 +27,7 @@ module RailsTemplate
       g.helper false
     end
 
+    config.active_record.schema_format = :sql
     config.action_controller.default_protect_from_forgery = false
     config.generators.system_tests = nil
   end

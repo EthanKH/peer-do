@@ -24,5 +24,5 @@ class Ping < ApplicationRecord
   belongs_to :poker, class_name: "User", counter_cache: true
   belongs_to :task, counter_cache: true
 
-  validates :poker_id, uniqueness: { scope: :task_id, message: "has already pinged this task" }
+  # validates :poker_id, uniqueness: { scope: :task_id, message: "has already pinged this task" }
 end

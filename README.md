@@ -9,3 +9,5 @@ Taskie is a To-Do list that combines the social aspect of accountability (or pee
 - Get more done!
 
 Taskie is meant to be simple and quick to use so you aren't wasting too much time on it, as well as to encourage better habits of writing down your goals. People who write down clear goals often complete 5-10 times more than their peers!
+
+If you are opening this directly from the repository, please run rake sample_data to populate the database, and open port 3000.

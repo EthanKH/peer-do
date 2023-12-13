@@ -22,7 +22,7 @@
 #  owner_id  (owner_id => users.id)
 #
 class Task < ApplicationRecord
-  belongs_to :owner, class_name: "User", counter_cache: true
+  belongs_to :owner, class_name: "User", foreign_key: "owner_id", counter_cache: true
   has_many :pings, dependent: :destroy
 
   has_many :pokers, through: :pings

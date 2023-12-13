@@ -2,10 +2,12 @@
   <strong><%= @user.og_name %></strong>
     <% if current_user && current_user.username == @user.username %>
       <% else %>
-        <p></p>
         <button type="button" class="btn btn-info">Send Friend Request</button>
     <% end %>
 </h1>
+<p> <strong>Username: </strong><%= @user.username  %> </p>
+<p></p><p></p>
+
 
 <ul class="nav nav-tabs nav-fill" style="border: 2px solid #333; border-radius: 10px;">
   <li class="nav-item">

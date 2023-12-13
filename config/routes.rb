@@ -6,8 +6,12 @@ Rails.application.routes.draw do
 
   resources :tasks
   resources :pings
-  resources :friend_requests
-
+  resources :friend_requests, only: [] do
+    member do
+      post 'accept', to: 'friend_requests#accept', as: :accept
+      delete 'reject', to: 'friend_requests#reject', as: :reject
+    end
+  end
   get "users" => "users#index", as: :users
   get ":username" => "users#show", as: :user
   get ":username/my_tasks" => "users#my_tasks", as: :my_tasks

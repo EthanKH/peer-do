@@ -28,8 +28,8 @@ class UsersController < ApplicationController
   end
 
   def friends
-    @user = User.find_by!(username: params[:username])
-    @accepted_requests = FriendRequest.accepted.includes(:receiver)
+    @user = User.find_by(username: params[:username])
+    @accepted_requests = @user&.accepted_received_friend_requests
   end
 
 

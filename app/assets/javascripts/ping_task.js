@@ -14,12 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .then(response => response.json())
       .then(data => {
-        // Log the element to check if it's found
-        const pingsCountElement = document.querySelector('.pings-count');
-        console.log('Pings Count Element:', pingsCountElement);
-
+        const pingsCountElement = document.querySelector('.current-pings');
         if (pingsCountElement) {
+          // Update the UI with the new count
           pingsCountElement.innerText = data.pings_count;
+        } else {
+          console.error('Element with class .current-pings not found.');
         }
       })
       .catch(error => {

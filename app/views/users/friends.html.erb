@@ -1,9 +1,9 @@
 <h1>
   <strong><%= @user.og_name %></strong>
-    <% if current_user && current_user.username == @user.username %>
-      <% else %>
-        <button type="button" class="btn btn-info">Send Friend Request</button>
-    <% end %>
+  <% if current_user && current_user.username == @user.username %>
+  <% else %>
+    <button type="button" class="btn btn-info">Send Friend Request</button>
+  <% end %>
 </h1>
 <p> <strong>Username: </strong><%= @user.username  %> </p>
 
@@ -36,21 +36,20 @@
     </ul>
   </div>
 
-<div class="col-md-6">
-  <h2><strong>Friend Requests</strong></h2>
-  <ul class="list-group">
-    <% @user.received_friend_requests.each do |request| %>
-      <% requester = request.sender %>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <%= requester.og_name %>
-        <div class="btn-group" role="group">
-          <%= button_to "Accept", accept_friend_request_path(request), method: :post, class: "btn btn-success" %>
-          <%= button_to "Reject", reject_friend_request_path(request), method: :delete, class: "btn btn-danger" %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
-</div>
-
+  <div class="col-md-6">
+    <h2><strong>Friend Requests</strong></h2>
+    <ul class="list-group">
+      <% @user.received_friend_requests.each do |request| %>
+        <% requester = request.sender %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <%= requester.og_name %>
+          <div class="btn-group" role="group">
+            <%= button_to "Accept", accept_friend_request_path(request), method: :post, class: "btn btn-success accept-request", "data-request-id": request.id %>
+            <%= button_to "Reject", reject_friend_request_path(request), method: :delete, class: "btn btn-danger reject-request", "data-request-id": request.id %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
 </div>

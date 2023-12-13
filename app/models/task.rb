@@ -30,7 +30,7 @@ class Task < ApplicationRecord
   validates :description, presence: true
   validates :due_date, presence: true
   validates :due_time, presence: true
-  validates :ping_frequency, presence: true
+  # validates :ping_frequency, presence: true
   # validates :completion, presence: true
   
 end

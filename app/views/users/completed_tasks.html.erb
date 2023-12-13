@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'ping_task', 'toggle_completion' %>
 <h1>
   <strong><%= @user.og_name %></strong>
     <% if current_user && current_user.username == @user.username %>
@@ -28,14 +29,15 @@
 <% current_month = nil %>
 
 <% @user.own_tasks.order(due_date: :asc, due_time: :asc).group_by { |task| task.due_date.month }.each do |month, tasks| %>
-  <h2><%= tasks.first.due_date.strftime("%B") %></h2>
-  <div class="row">
-    <% tasks.each do |task| %>
-      <% if task.completion == true %>
+  <% tasks_for_month = tasks.select { |task| task.completion } %>
+  <% unless tasks_for_month.empty? %>
+    <h2><%= tasks.first.due_date.strftime("%B") %></h2>
+    <div class="row">
+      <% tasks_for_month.each do |task| %>
         <div class="col-md-12">
           <%= render "tasks/task_list", task: task %>
         </div>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 <% end %>

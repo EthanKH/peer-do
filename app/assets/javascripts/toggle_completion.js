@@ -1,4 +1,3 @@
-// toggle_completion.js
 document.addEventListener('DOMContentLoaded', () => {
   const doneButtons = document.querySelectorAll('.done-button');
 

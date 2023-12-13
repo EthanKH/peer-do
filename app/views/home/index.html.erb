@@ -2,11 +2,11 @@
   <div class="text-center">
     <h1>Welcome to Taskie, <%= current_user.username.capitalize %>!</h1>
     <p></p>
-    <a href="/tasks/new" class="btn btn-primary">Create New Task</a>
+    <%= link_to "Create New Task", new_task_path, class: "btn btn-primary" %>
     <p></p>
-    <a href="/<%= current_user.username %>/my_tasks" class="btn btn-info">Go to your tasks!</a>
+    <%= link_to "Go to your tasks!", my_tasks_path(current_user.username), class: "btn btn-info" %>
     <p></p>
-    <a href="/<%= current_user.username %>/peer" class="btn btn-light">Check on your friends' tasks!</a>
+    <%= link_to "Check on your friends' tasks!", peer_path(current_user.username), class: "btn btn-light" %>
     <p></p>
     <p class="nav-item">
       <%= link_to "Search for Users", users_path, class: "nav-link" %>
@@ -34,9 +34,9 @@
     ~ Ethan Huang ~
   </div>
   <p></p>
-<!--  <div style="text-align: center;">-->
-    <%#= image_tag("taskie_doodle.png", alt: "Taskie Logo") %>
-<!--  </div>-->
+  <!--  <div style="text-align: center;">-->
+  <%#= image_tag("taskie_doodle.png", alt: "Taskie Logo") %>
+  <!--  </div>-->
   <p></p>
   <div style="text-align: center; width: 60%; margin: 0 auto;">
     P.S. alice, bob, test, and sample are all default users @example.com, please use them to test the app out! 

@@ -38,8 +38,6 @@ class User < ApplicationRecord
   has_many :received_friend_requests, foreign_key: :receiver_id, class_name: "FriendRequest"
   has_many :accepted_received_friend_requests, -> { accepted }, foreign_key: :receiver_id, class_name: "FriendRequest"
 
-  # has_many :peer_tasks, through: :pings, source: :task
-
   has_many :receivers, through: :accepted_sent_friend_requests, source: :receiver
   has_many :senders, through: :accepted_received_friend_requests, source: :sender
 
@@ -48,6 +46,11 @@ class User < ApplicationRecord
   has_many :peer_tasks, through: :pings, source: :task
   has_many :tasks_page, through: :receivers, source: :own_tasks
   
+  before_validation :generate_username, on: :create
+  def generate_username
+    self.username = email.split('@').first
+    self.og_name = self.username.capitalize
+  end
 
   def generated_name
     read_attribute(:generated_name) || username

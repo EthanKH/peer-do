@@ -1,11 +1,26 @@
 <div id="<%= dom_id ping %>">
   <p>
-    <strong>Poker:</strong>
+    <strong>Poker ID:</strong>
     <%= ping.poker_id %>
   </p>
 
+ <p>
+    <strong>Poker Username:</strong>
+    <%= ping.poker.og_name %> <!-- Assuming 'og_name' is the name attribute -->
+  </p>
+
   <p>
-    <strong>Task:</strong>
+    <strong>Task Description:</strong>
+    <%= ping.task.description %>
+  </p>
+
+  <p>
+    <strong>Task Owner:</strong>
+    <%= ping.task.owner.og_name %>
+  </p>
+
+  <p>
+    <strong>Task ID:</strong>
     <%= ping.task_id %>
   </p>
 

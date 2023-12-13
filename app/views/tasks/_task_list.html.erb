@@ -26,7 +26,9 @@
         <strong>Current Pings: </strong><%= task.pings_count %>
       </p>
       <p>
-        <strong><button type="button" class="btn btn-warning ping-button" data-task-id="<%= task.id %>">Ping me!</button></strong>
+        <strong>
+          <button type="button" class="btn btn-warning ping-button" data-task-id="<%= task.id %>">Ping me!</button>
+        </strong>
       </li>
       <% if current_user && current_user.username == task.owner.username %>
         <% if task.completion == false %>

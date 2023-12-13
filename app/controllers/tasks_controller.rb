@@ -67,7 +67,7 @@ class TasksController < ApplicationController
     end
   end
 
-def ping_task
+  def ping_task
     @task = Task.find(params[:id])
     @task.increment!(:pings_count)
     

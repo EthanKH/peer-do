@@ -67,6 +67,13 @@ class TasksController < ApplicationController
     end
   end
 
+def ping_task
+    @task = Task.find(params[:id])
+    @task.increment!(:pings_count)
+    
+    render json: { pings_count: @task.pings_count }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task

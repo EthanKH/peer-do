@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-  <div class="container">
-    <%= link_to "Taskie", root_path, class: "navbar-brand" %>
+  <div class="container d-flex justify-content-between">
+    <%= link_to "Taskie", root_path, class: "navbar-brand", style: "padding-right: 20px;" %>
+    <%= image_tag("taskie_doodle.png", alt: "Taskie Logo", style: "height: 60px; width: 100px; padding-right: 20px;") %>
+
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,48 +10,24 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <%= link_to "All tasks", tasks_path, class: "nav-link" %>
+<!--        <li class="nav-item">-->
+          <%#= link_to "All Tasks", tasks_path, class: "nav-link" %>
+<!--        </li>-->
+      <% if user_signed_in? %>
+        <li class="nav-item", style= "padding-right: 20px;">
+          <a href="/tasks/new" class="btn btn-primary">Create New Task</a>
         </li>
-        <%# if user_signed_in? %>
-<!--          <li class="nav-item">-->
-            <%#= link_to own_tasks_path(current_user.username), class: "nav-link" do %>
-<!--              <i class="fas fa-users fa-fw"></i>
-              My Tasks
-            <%# end %>-->
-<!--          </li>
-          <li class="nav-item">
-            <%#= link_to friends_tasks_path(current_user.username), class: "nav-link" do %>-->
-<!--              <i class="fas fa-compass fa-fw"></i>
-              Friends 
-            <%# end %>-->
-<!--          </li>-->
-        <%# end %>
+        <li class="nav-item">
+          <%= link_to "Search for Users", users_path, class: "nav-link" %>
+        </li>
+      <% else %>
+      <% end %>
       </ul>
     </div>
     <ul class="navbar-nav">
       <% if user_signed_in? %>
-        <!-- <li class="nav-item">-->
-        <%#= link_to new_photo_path, class: "nav-link" do %>
-          <!--            <i class="fas fa-plus-circle"></i>
-
-            Add post
-          <%# end %>-->
-          <!--        </li>
-        <li class="nav-item">
-          <%#= link_to user_path(current_user.username), class: "nav-link" do %>-->
-          <!--            <i class="fas fa-home fa-fw"></i>
-
-            Your profile
-          <%# end %>-->
-          <!--    </li> -->
-          <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <%#= current_user.username %>-->
-          <!--      </a>-->
-
           <li class="nav-item">
-            <%= link_to current_user.username, my_tasks_path(current_user.username), class: "nav-link" %>
+            <%= link_to current_user.username.capitalize, my_tasks_path(current_user.username), class: "nav-link" %>
           </li>
 
           <li class="nav-item">

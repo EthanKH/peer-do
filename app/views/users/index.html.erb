@@ -1,0 +1,48 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Search for a User</h1>
+<%= search_form_for @q do |f| %>
+  <%= f.label :username_cont %>
+  <%= f.search_field :username_eq %>
+  <%= f.submit "Search" %>
+<% end %>
+<!--if just searching for username containing characters-->
+<%#= f.search_field :username_cont %>
+
+<% if @users.present? %>
+  <p></p>
+  <h4>Search Results</h4>
+  <ul id="users">
+    <% @users.each do |user| %>
+      <ul class="list-group">
+        <li class="list-group-item" style="width: 20rem;">
+          <%= link_to user.og_name, user_path(user.username) %>
+          <p></p>
+        </li>
+      </ul>
+    <% end %>
+  </ul>
+<% else %>
+  <p></p> No users found.<p></p> 
+  Please try formatting your username to:
+  <ul>
+    <li>be lowercased</li>
+    <li>be the same as the user's email address</li>
+    <li>remove special characters</li>
+    <li>include "_" for users with a space in their name</li>
+  </ul>
+  <p></p> alice, bob, test, and sample are all valid.
+<% end %>
+
+<!--To See All Users, keep for reference-->
+<!--<h1>All Users</h1>
+<ul id="users">
+  <%# @users.each do |user| %>-->
+<!--    <ul class="list-group">
+      <li class="list-group-item" style="width: 20rem;">
+        <%#= link_to user.og_name, user_path(user.username) %>-->
+<!--        <p></p>
+      </li>
+    </ul>
+  <%# end %>-->
+<!--</ul>-->

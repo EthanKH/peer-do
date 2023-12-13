@@ -1,12 +1,47 @@
 <% if user_signed_in? %>
-  <h1>Welcome to Taskie <%= current_user.username %>!</h1>
-  <div><a href="/tasks/new">Create New Task?</a></div>
+  <div class="text-center">
+    <h1>Welcome to Taskie, <%= current_user.username.capitalize %>!</h1>
+    <p></p>
+    <a href="/tasks/new" class="btn btn-primary">Create New Task</a>
+    <p></p>
+    <a href="/<%= current_user.username %>/my_tasks" class="btn btn-info">Go to your tasks!</a>
+    <p></p>
+    <a href="/<%= current_user.username %>/peer" class="btn btn-light">Check on your friends' tasks!</a>
+    <p></p>
+    <p class="nav-item">
+      <%= link_to "Search for Users", users_path, class: "nav-link" %>
+    </p>
+  </div>
 <% else %>
-  <h1>Welcome to Taskie!</h1>
-  <div>Taskie is a To-Do list that combines the social aspect of accountability (or peer pressure) from your friends to help keep you on track of your goals! Your tasks will be publicly available for only the friends you've added to see. Ping your friends on tasks that they have yet to complete, just be nice about it!</div>
-  <ul>
+  <div class="text-center">
+    <h1>Welcome to Taskie!</h1>
+    <p></p>
+  </div>
+
+  <div style="text-align: center; width: 60%; margin: 0 auto;">
+    Taskie is a To-Do list that combines the social aspect of accountability (or peer pressure) from your friends to help keep you on track of your goals! Your tasks will be publicly available for only the friends you've added to see. Ping your friends on tasks that they have yet to complete, just be nice about it!
+  </div>
+  <p></p>
+  <ol style="list-style-position: inside; display: flex; flex-direction: column; align-items: center; justify-content: center;">
     <li>Create tasks for yourself!</li>
     <li>Ping your friends, keep them accountable!</li>
     <li>Get more done!</li>
-  </ul>
+  </ol>
+  <p></p>
+  <div style="text-align: center; width: 60%; margin: 0 auto;">
+    Thank you for checking out Taskie! 
+    <p></p>
+    ~ Ethan Huang ~
+  </div>
+  <p></p>
+  <div style="text-align: center;">
+    <%= image_tag("taskie_doodle.png", alt: "Taskie Logo") %>
+  </div>
+  <p></p>
+  <div style="text-align: center; width: 60%; margin: 0 auto;">
+    P.S. alice, bob, test, and sample are all default users @example.com, please use them to test the app out! 
+
+  </div>
+</div>
+
 <% end %>

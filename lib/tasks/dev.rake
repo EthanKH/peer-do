@@ -8,6 +8,7 @@ task({ :sample_data => :environment }) do
 
   p "Creating sample data..."
 
+  # reset sample data
   if Rails.env.development?
     FriendRequest.destroy_all
     Ping.destroy_all
@@ -15,38 +16,49 @@ task({ :sample_data => :environment }) do
     User.destroy_all
   end
 
-  test_usernames = Array.new
-
-  test_usernames << "test"
-  test_usernames << "sample"
-  test_usernames << "alice"
-  test_usernames << "bob"
+  # some permanent users
+  # %w is a shortcut for an array of strings in ruby
+  test_usernames = %w[test sample alice bob]
 
   test_usernames.each do |username|
     User.create(
-      email: "#{username}@example.com",
+      email: "#{username.downcase}@example.com",
       password: "password",
       username: username.downcase,
       private: [true, false].sample,
+      og_name: username.capitalize
     )
   end
 
-  15.times do
-    name = p Faker::Games::Zelda.character
-    u = User.create(
-      email: "#{name.gsub(" ", "_")}@example.com",
-      password: "password",
-      username: name,
-      private: [true, false].sample,
-    )
+  require 'set'
 
+  names_set = Set.new
+  
+  26.times do
+    og_name = p Faker::Games::Zelda.character
+    fixed_name = og_name.downcase.gsub(/[^0-9a-z ]/, '').gsub(' ', '_')
+  
+    # Check if the fixed_name already exists
+    while names_set.include?(fixed_name)
+      og_name = p Faker::Games::Zelda.character
+      fixed_name = og_name.downcase.gsub(/[^0-9a-z ]/, '').gsub(' ', '_')
+    end
+  
+    # Add the fixed_name to the set to avoid repetition
+    names_set << fixed_name
+  
+    u = User.create(
+      email: "#{fixed_name}@example.com",
+      password: "password",
+      username: fixed_name,
+      private: [true, false].sample,
+      og_name: og_name
+    )
+  
     p u.errors.full_messages
   end
-
-  # p "There are now #{User.count} users in the database."
-
+  
   users = User.all
-
 
   users.each_with_index do |first_user, index|
     (index + 1).upto(users.length - 1) do |second_user_index|
@@ -82,6 +94,7 @@ task({ :sample_data => :environment }) do
   #   end
   # end
 
+  #random task generated for each user
   users.each do |user|
     5.times do
       task = user.own_tasks.create(
@@ -94,7 +107,7 @@ task({ :sample_data => :environment }) do
         due_date: Faker::Date.forward(days: 30),
         due_time: Faker::Time.forward(format: :short),
         ping_frequency: rand(1..10),
-        completion: rand(0..100)
+        completion: [true, false].sample
       )
       user.senders.each do |sender|
         if rand < 0.5 && !task.pokers.include?(sender)
@@ -102,9 +115,7 @@ task({ :sample_data => :environment }) do
         end
 
         if rand < 0.25
-          task.pings.create(
-            poker: sender
-          )
+          task.pings.create(poker: sender)
         end
       end
     end
@@ -117,4 +128,3 @@ end
 
 # command to check params of a user in rails console  User.first.attributes
 # User.find(number)
-

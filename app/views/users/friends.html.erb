@@ -1,0 +1,56 @@
+<h1>
+  <strong><%= @user.og_name %></strong>
+    <% if current_user && current_user.username == @user.username %>
+      <% else %>
+        <button type="button" class="btn btn-info">Send Friend Request</button>
+    <% end %>
+</h1>
+<p> <strong>Username: </strong><%= @user.username  %> </p>
+
+<ul class="nav nav-tabs nav-fill" style="border: 2px solid #333; border-radius: 10px;">
+  <li class="nav-item">
+    <%= link_to "My Tasks", my_tasks_path(@user.username), class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Completed Tasks", completed_tasks_path(@user.username), class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Friends' Pinged Tasks", peer_path(@user.username), class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Friends List", user_friends_path(@user.username), class: "nav-link" %>
+  </li>
+</ul>
+
+<div class="row">
+  <div class="col-md-6">
+    <h2><strong>Friends List</strong></h2>
+    <ul>
+      <% @user.friends.each do |friend| %>
+        <ul class="list-group">
+          <li class="list-group-item" style="width: 20rem;">
+            <%= link_to friend.og_name, user_path(friend.username) %>
+          </li>
+        </ul>
+      <% end %>
+    </ul>
+  </div>
+
+<div class="col-md-6">
+  <h2><strong>Friend Requests</strong></h2>
+  <ul class="list-group">
+    <% @user.received_friend_requests.each do |request| %>
+      <% requester = request.sender %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%= requester.og_name %>
+        <div class="btn-group" role="group">
+          <%= button_to "Accept", accept_friend_request_path(request), method: :post, class: "btn btn-success" %>
+          <%= button_to "Reject", reject_friend_request_path(request), method: :delete, class: "btn btn-danger" %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+</div>

@@ -5,6 +5,7 @@
 #  id                     :integer          not null, primary key
 #  email                  :text             default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  og_name                :string
 #  pings_count            :integer          default(0)
 #  private                :boolean          default(TRUE)
 #  remember_created_at    :datetime
@@ -14,6 +15,7 @@
 #  username               :text
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  friendship_id          :integer
 #
 # Indexes
 #
@@ -36,13 +38,28 @@ class User < ApplicationRecord
   has_many :received_friend_requests, foreign_key: :receiver_id, class_name: "FriendRequest"
   has_many :accepted_received_friend_requests, -> { accepted }, foreign_key: :receiver_id, class_name: "FriendRequest"
 
-  has_many :peer_tasks, through: :pings, source: :task
-
   has_many :receivers, through: :accepted_sent_friend_requests, source: :receiver
   has_many :senders, through: :accepted_received_friend_requests, source: :sender
 
-  has_many :tasks_page, through: :receivers, source: :own_tasks
+  has_many :friends, through: :accepted_sent_friend_requests, source: :receiver
 
+  has_many :peer_tasks, through: :pings, source: :task
+  has_many :tasks_page, through: :receivers, source: :own_tasks
+  
+  before_validation :generate_username, on: :create
+  def generate_username
+    self.username = email.split('@').first
+    self.og_name = self.username.capitalize
+  end
+
+  def generated_name
+    read_attribute(:generated_name) || username
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[id email username created_at updated_at] 
+    # List the attributes you want to allow for searching
+  end
 
   # validates :username, presence: true, uniqueness: true
 end

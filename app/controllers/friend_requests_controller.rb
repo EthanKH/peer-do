@@ -57,14 +57,29 @@ class FriendRequestsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_friend_request
-      @friend_request = FriendRequest.find(params[:id])
-    end
+  # POST /friend_requests/1/accept
+  def accept
+    @friend_request = FriendRequest.find(params[:id])
+    @friend_request.accept!
+    redirect_to user_friends_path(current_user), notice: "Friend request accepted."
+  end
 
-    # Only allow a list of trusted parameters through.
-    def friend_request_params
-      params.require(:friend_request).permit(:recipient_id, :sender_id, :status)
-    end
+  # DELETE /friend_requests/1/reject
+  def reject
+    @friend_request = FriendRequest.find(params[:id])
+    @friend_request.reject!
+    redirect_to user_friends_path(current_user), notice: "Friend request rejected."
+  end
+
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_friend_request
+    @friend_request = FriendRequest.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def friend_request_params
+    params.require(:friend_request).permit(:recipient_id, :sender_id, :status)
+  end
 end

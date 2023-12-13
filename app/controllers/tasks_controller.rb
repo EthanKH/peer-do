@@ -24,13 +24,14 @@ class TasksController < ApplicationController
   def create
     if current_user
       @task = current_user.own_tasks.build(task_params)
+      @user = current_user
     else
       @task = Task.new(task_params)
-    end    
-
+    end
+  
     respond_to do |format|
       if @task.save
-        format.html { redirect_to task_url(@task), notice: "Task was successfully created." }
+        format.html { redirect_to my_tasks_path(@user.username), notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,6 +39,7 @@ class TasksController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
@@ -54,12 +56,22 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
+    @task = Task.find(params[:id])
+    @user = @task.owner
+
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: "Task was successfully destroyed." }
+      format.html { redirect_to my_tasks_path(@user.username), notice: "Task was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+def ping_task
+    @task = Task.find(params[:id])
+    @task.increment!(:pings_count)
+    
+    render json: { pings_count: @task.pings_count }
   end
 
   private

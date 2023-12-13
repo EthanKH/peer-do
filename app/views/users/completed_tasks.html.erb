@@ -6,8 +6,7 @@
     <% end %>
 </h1>
 <p> <strong>Username: </strong><%= @user.username  %> </p>
-<p></p><p></p>
-
+<p></p>
 
 <ul class="nav nav-tabs nav-fill" style="border: 2px solid #333; border-radius: 10px;">
   <li class="nav-item">
@@ -24,16 +23,19 @@
   </li>
 </ul>
 
-<h2><strong>My Tasks</strong></h2>
+<h2><strong>Completed Tasks</strong></h2>
 
 <% current_month = nil %>
+
 <% @user.own_tasks.order(due_date: :asc, due_time: :asc).group_by { |task| task.due_date.month }.each do |month, tasks| %>
   <h2><%= tasks.first.due_date.strftime("%B") %></h2>
   <div class="row">
     <% tasks.each do |task| %>
-      <div class="col-md-12">
-        <%= render "tasks/task_list", task: task %>
-      </div>
+      <% if task.completion == true %>
+        <div class="col-md-12">
+          <%= render "tasks/task_list", task: task %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 <% end %>

@@ -24,4 +24,13 @@ class FriendRequest < ApplicationRecord
   belongs_to :sender, class_name: "User"
 
   enum status: { pending: "pending", accepted: "accepted", rejected: "rejected" }
+  scope :accepted, -> { where(status: :accepted) }
+
+  def accept!
+    update(status: 'accepted')
+  end
+
+  def reject!
+    update(status: 'rejected')
+  end
 end

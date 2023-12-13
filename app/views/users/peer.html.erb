@@ -1,24 +1,65 @@
 <h1>
-  <%= @user.username %>
+  <strong><%= @user.og_name %></strong>
+    <% if current_user && current_user.username == @user.username %>
+      <% else %>
+        <button type="button" class="btn btn-info">Send Friend Request</button>
+    <% end %>
 </h1>
+<p> <strong>Username: </strong><%= @user.username  %> </p>
+<p></p>
 
-<h2>Friends' Pinged Tasks</h2>
-
-<ul class="nav nav-pills nav-fill">
+<ul class="nav nav-tabs nav-fill" style="border: 2px solid #333; border-radius: 10px;">
   <li class="nav-item">
-    <%= link_to "My Tasks", user_path(@user.username), class: "nav-link" %>
+    <%= link_to "My Tasks", my_tasks_path(@user.username), class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Completed Tasks", completed_tasks_path(@user.username), class: "nav-link" %>
   </li>
   <li class="nav-item">
     <%= link_to "Friends' Pinged Tasks", peer_path(@user.username), class: "nav-link" %>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Friends List</a>
+    <%= link_to "Friends List", user_friends_path(@user.username), class: "nav-link" %>
   </li>
-<!--  <li class="nav-item">
-    <a class="nav-link disabled">Disabled</a>
-  </li>-->
 </ul>
 
-<% @user.peer_tasks.each do |task| %>
-  <%= render "tasks/task_list", task: task %>
+<h2><strong>Friends' Pinged Tasks</strong></h2>
+
+
+<% current_owner = nil %>
+<% tasks_by_owner = @user.peer_tasks.order(owner_id: :asc, due_date: :asc, due_time: :asc).group_by(&:owner) %>
+<% tasks_by_owner.each do |owner, tasks| %>
+  <div class="row">
+    <% tasks.compact.each do |task| %>
+      <% if current_owner != task.owner %>
+        <% current_owner = task.owner %>
+        <div class="col-md-12">
+          <% if task.owner.og_name.present? %>
+            <h3><%= task.owner.og_name %>'s Tasks</h3>
+          <% else %>
+            <h3><%= task.owner.username %>'s Tasks</h3>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="col-md-12">
+        <%= render "tasks/task_list", task: task %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
+
+
+
+<!-- Old Styling -->
+<%# current_owner = nil %>
+<%# @user.peer_tasks.each do |task| %>
+  <%# if current_owner != task.owner %>
+    <%# current_owner = task.owner %>
+      <%# if task.owner.og_name != nil %>
+<!--          <h3><%#= task.owner.og_name %>'s Tasks</h3>-->
+        <%# else %>
+<!--          <h3><%#= task.owner.username %>'s Tasks</h3>-->
+        <%# end %>
+  <%# end %>
+  <%#= render "tasks/task_list", task: task %>
+<%# end %>

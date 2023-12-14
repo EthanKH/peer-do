@@ -1,11 +1,6 @@
 CREATE TABLE IF NOT EXISTS "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY);
 CREATE TABLE IF NOT EXISTS "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL);
 CREATE TABLE sqlite_sequence(name,seq);
-CREATE TABLE IF NOT EXISTS "taskies" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "description" text, "due_date" date, "due_time" time, "completion" integer, "ping_frequency" integer, "owner_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e49d137ec8"
-FOREIGN KEY ("owner_id")
-  REFERENCES "owners" ("id")
-);
-CREATE INDEX "index_taskies_on_owner_id" ON "taskies" ("owner_id");
 CREATE TABLE IF NOT EXISTS "pings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "poker_id" integer NOT NULL, "task_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_fb5a61cb74"
 FOREIGN KEY ("poker_id")
   REFERENCES "users" ("id")
@@ -38,7 +33,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20231116203627'),
 ('20231129164618'),
 ('20231129165502'),
-('20231129180028'),
 ('20231129180133'),
 ('20231129181751'),
 ('20231129182110'),

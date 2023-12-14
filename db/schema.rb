@@ -78,6 +78,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_12_074052) do
   add_foreign_key "friend_requests", "users", column: "sender_id"
   add_foreign_key "pings", "tasks"
   add_foreign_key "pings", "users", column: "poker_id"
-  add_foreign_key "taskies", "owners"
   add_foreign_key "tasks", "users", column: "owner_id"
 end

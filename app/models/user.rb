@@ -29,7 +29,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :tasks, class_name: "Task", foreign_key: "owner_id"
+  # has_many :tasks, class_name: "Task", foreign_key: "owner_id"
   self.table_name = "users"
 
   has_many :own_tasks, foreign_key: :owner_id, class_name: "Task"

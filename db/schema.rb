@@ -30,17 +30,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_12_074052) do
     t.index ["task_id"], name: "index_pings_on_task_id"
   end
 
-  create_table "taskies", force: :cascade do |t|
-    t.text "description"
-    t.date "due_date"
-    t.time "due_time"
-    t.integer "completion"
-    t.integer "ping_frequency"
-    t.integer "owner_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["owner_id"], name: "index_taskies_on_owner_id"
-  end
+  # create_table "taskies", force: :cascade do |t|
+  #   t.text "description"
+  #   t.date "due_date"
+  #   t.time "due_time"
+  #   t.integer "completion"
+  #   t.integer "ping_frequency"
+  #   t.integer "owner_id", null: false
+  #   t.datetime "created_at", null: false
+  #   t.datetime "updated_at", null: false
+  #   t.index ["owner_id"], name: "index_taskies_on_owner_id"
+  # end
 
   create_table "tasks", force: :cascade do |t|
     t.text "description"

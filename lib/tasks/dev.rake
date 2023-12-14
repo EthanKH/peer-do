@@ -18,7 +18,7 @@ task({ :sample_data => :environment }) do
 
   # some permanent users
   # %w is a shortcut for an array of strings in ruby
-  test_usernames = %w[test sample alice bob]
+  test_usernames = %w[ethan test sample alice bob]
 
   test_usernames.each do |username|
     User.create(

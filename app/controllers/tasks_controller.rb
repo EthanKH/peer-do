@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
+    # @tasks = Task.all
     @tasks = Task.order(:due_date, :due_time)
   end
 
@@ -23,8 +23,8 @@ class TasksController < ApplicationController
   # POST /tasks or /tasks.json
   def create
     if current_user
-      @task = current_user.own_tasks.build(task_params)
       @user = current_user
+      @task = @user.own_tasks.build(task_params)
     else
       @task = Task.new(task_params)
     end

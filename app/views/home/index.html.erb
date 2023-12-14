@@ -4,9 +4,9 @@
     <p></p>
     <%= link_to "Create New Task", new_task_path, class: "btn btn-primary" %>
     <p></p>
-    <%= link_to "Go to your tasks!", my_tasks_path(current_user.username), class: "btn btn-info" %>
+    <%= link_to "Go to Your Tasks!", my_tasks_path(current_user.username), class: "btn btn-info" %>
     <p></p>
-    <%= link_to "Check on your friends' tasks!", peer_path(current_user.username), class: "btn btn-light" %>
+    <%= link_to "Check on your Friends' Tasks!", peer_path(current_user.username), class: "btn btn-light" %>
     <p></p>
     <p class="nav-item">
       <%= link_to "Search for Users", users_path, class: "nav-link" %>

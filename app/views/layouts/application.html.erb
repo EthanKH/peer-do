@@ -10,8 +10,9 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <%#= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%#= javascript_importmap_tags %><!-- this made my button open twice, but also enables the ping_task but not toggle_completion-->
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%#= javascript_importmap_tags %>
+    <!-- this made my button open twice, but also enables the ping_task but not toggle_completion, also enables sign out-->
   </head>
 
   <body>

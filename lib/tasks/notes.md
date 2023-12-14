@@ -225,3 +225,26 @@ end -->
 <!--  </div>-->
 <%# end %>
 <!---->
+
+
+extra migrations
+20231129181751_remove_owner_reference_from_tasks.rb
+class RemoveOwnerReferenceFromTasks < ActiveRecord::Migration[7.0]
+  def change
+    remove_reference :tasks, :owner, null: false, foreign_key: true
+  end
+end
+
+20231129182110_remove_owner_id_from_tasks.rb
+class RemoveOwnerIdFromTasks < ActiveRecord::Migration[7.0]
+  def change
+    remove_column :tasks, :owner_id
+  end
+end
+
+20231129182306_add_owner_to_tasks.rb
+class AddOwnerToTasks < ActiveRecord::Migration[7.0]
+  def change
+    add_reference :tasks, :owner, null: false, foreign_key: { to_table: :users }
+  end
+end

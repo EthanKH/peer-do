@@ -1,4 +1,4 @@
-<!-- # user --> user
+<!-- # user -->
 #   own_photos                        --> own_tasks (user.rb line 30, 44, dev.rake line 54)
 #   likes                             --> pings 
 #   author_id                         --> poker_id 
@@ -117,3 +117,111 @@ end -->
     change_column :tasks, :completion, :boolean, default: false
   end
 end -->
+
+<!-- Old Task List Styling -->
+
+  <!--<ul>
+  <div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-horizontal">
+      <div class="card-header">
+        <strong>Task Owner: </strong>
+        <%# if task.owner.og_name != nil %>-->
+  <!-- <%#= task.owner.og_name %> -->
+  <!-- <%# else %> -->
+  <!-- <%#= task.owner.username %> -->
+  <!-- <%# end %> -->
+  <!--      </div>
+      <li class="list-group-item"><strong>Due Date: </strong><%#= task.due_date.strftime("%m/%d/%Y") %></li>
+      <li class="list-group-item"><strong><button type="button" class="btn btn-warning">Ping me!</button></strong></li>
+      <li class="list-group-item"><strong>Current Pings: </strong><%#= task.owner.pings_count %></li>
+      <%# if current_user && current_user.username == task.owner.username %>-->
+  <!--        <li class="list-group-item"><button type="button" class="btn btn-primary"> Done!</button></li>-->
+  <!-- <%# end %> -->
+  <!--
+    </ul>
+    <ul class="list-group list-group-horizontal">
+      <div class="card-header">
+        <strong>Description: </strong>
+        <%#= task.description %>-->
+  <!--      </div>
+      <li class="list-group-item"><strong>Due Time: </strong><%#= task.due_time.strftime("%I:%M %p") %>
+      </li>
+      <%# if current_user && current_user.username == task.owner.username %>-->
+  <!--        <ul class="list-group list-group-horizontal">
+          <li class="list-group-item">
+            <button type="button" class="btn btn-success">
+              <%#= link_to "More details", task, style: "color: white; text-decoration: none;" %>-->
+  <!--            </button>
+          </li>
+          <li class="list-group-item">
+            <%#= button_to "Delete Task", task_path(task), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>-->
+  <!--          </li>
+        </ul>
+      <%# else %>-->
+  <!--        <li class="list-group-item">
+          <button type="button" class="btn btn-success">
+            <%#= link_to "More details", task, style: "color: white; text-decoration: none;" %>-->
+  <!--          </button>
+        </li>
+      <%# end %>-->
+  <!--    </ul>
+  </div>
+</ul>-->
+
+  <!-- Old Completion % -->
+  <!--      <li class="list-group-item"><strong>Completion: </strong><%#= task.completion %>%</li>-->
+
+  <!--
+<ul>
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      <strong>Task Owner: </strong>
+      <%# if task.owner.og_name != nil %>-->
+  <!-- <%#= task.owner.og_name %> -->
+  <!-- <%# else %> -->
+  <!-- <%#= task.owner.username %> -->
+  <!-- <%# end %> -->
+  <!--    </div>
+    <div class="card-header">
+      <strong>Description: </strong>
+      <%#= task.description %>-->
+  <!--    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Ping me!</li>
+      <li class="list-group-item">Due Date: <%#= task.due_date.strftime("%m/%d/%Y") %></li>
+      <li class="list-group-item">Due Time: <%#= task.due_time.strftime("%I:%M %p") %></li>
+      <li class="list-group-item"><%#= link_to "More details", task %></li>
+    </ul>
+  </div>
+</ul>
+-->
+
+<!-- Old Styling -->
+<!-- <%# current_owner = nil %> -->
+<!-- <%# @user.peer_tasks.each do |task| %> -->
+  <!-- <%# if current_owner != task.owner %> -->
+    <!-- <%# current_owner = task.owner %> -->
+      <!-- <%# if task.owner.og_name != nil %> -->
+<!--          <h3><%#= task.owner.og_name %>'s Tasks</h3>-->
+        <!-- <%# else %> -->
+<!--          <h3><%#= task.owner.username %>'s Tasks</h3>-->
+        <!-- <%# end %> -->
+  <!-- <%# end %> -->
+  <!-- <%#= render "tasks/task_list", task: task %> -->
+<!-- <%# end %> -->
+
+<!-- My Tasks Partial -->
+<!--If I want 3 tasks per row-->
+<%# @user.own_tasks.order(due_date: :asc, due_time: :asc).group_by { |task| task.due_date.month }.each do |month, tasks| %>
+<!--  <h2><%#= tasks.first.due_date.strftime("%B") %></h2>
+  <div class="row">
+    <%# tasks.each_slice(3) do |tasks_group| %>-->
+      <%# tasks_group.each do |task| %>
+<!--        <div class="col-md-4">-->
+          <%#= render "tasks/task_list", task: task %>
+<!--        </div>-->
+      <%# end %>
+    <%# end %>
+<!--  </div>-->
+<%# end %>
+<!---->

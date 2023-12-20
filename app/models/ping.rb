@@ -19,6 +19,8 @@
 #  task_id   (task_id => tasks.id)
 #
 class Ping < ApplicationRecord
+  # unused code can be deleted
+
   # has_many :peers, through: :pings, source: :poker
 
   belongs_to :poker, class_name: "User", counter_cache: true

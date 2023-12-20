@@ -30,6 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_12_074052) do
     t.index ["task_id"], name: "index_pings_on_task_id"
   end
 
+  # this is auto generated, you may need to check out your migration history or add a migration to remove this table
+  
   # create_table "taskies", force: :cascade do |t|
   #   t.text "description"
   #   t.date "due_date"

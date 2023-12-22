@@ -1,4 +1,7 @@
 class FriendshipsController < ApplicationController
+
+  # unused code can be deleted
+
   # def create
   #   friend = User.find(params[:friend_id])
   #   # Assuming the current_user is initiating the friendship request

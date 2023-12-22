@@ -30,6 +30,8 @@ class Task < ApplicationRecord
   validates :description, presence: true
   validates :due_date, presence: true
   validates :due_time, presence: true
+  
+  # unused code can be deleted
   # validates :ping_frequency, presence: true
   # validates :completion, presence: true
   

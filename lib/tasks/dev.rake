@@ -76,6 +76,8 @@ task({ :sample_data => :environment }) do
   end
   
 
+  #unused code can be deleted
+  
   # users.each do |first_user|
   #   users.each do |second_user|
   #     next if first_user == second_user

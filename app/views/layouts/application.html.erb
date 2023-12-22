@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <%# the title should be Taskie %>
     <title>Rails Template</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -23,6 +24,7 @@
     <div class="container">
       <div class="row mb-4">
         <div class="col-md-6 offset-md-3">
+        <%# this conditional could probaly handled in your flash partial%>
           <% if notice.present? %>
             <%= render partial: "shared/flash", locals: { message: notice, css_class: "success" } %>
           <% end %>
